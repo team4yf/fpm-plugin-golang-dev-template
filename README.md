@@ -11,16 +11,19 @@ import _ "github.com/team4yf/fpm-go-plugin-{{name}}/plugin"
 ```
 
 ### Config
+
+`conf/config.local.yaml`
+
 ```yaml
-xxx:
-    xxx: xxx
+{{name}}:
+    foo: bar
 ```
 
 ### Usage
 
 ```golang
 
-fpmApp.Execute("x.y", &fpm.BizParam{
+fpmApp.Execute("{{name}}.demo", &fpm.BizParam{
     "body":    "ok",
 })
 

@@ -4,25 +4,25 @@ import (
 	"github.com/team4yf/yf-fpm-server-go/fpm"
 )
 
-type xxConfig struct {
-	Xx string
+type {{name}}Config struct {
+	Foo string
 }
 
 func init() {
 	fpm.RegisterByPlugin(&fpm.Plugin{
-		Name: "fpm-plugin-xx",
+		Name: "fpm-plugin-{{name}}",
 		V:    "0.0.1",
 		Handler: func(fpmApp *fpm.Fpm) {
-			config := xxConfig{}
-			if fpmApp.HasConfig("xx") {
-				if err := fpmApp.FetchConfig("xx", &config); err != nil {
+			config := {{name}}Config{}
+			if fpmApp.HasConfig("{{name}}") {
+				if err := fpmApp.FetchConfig("{{name}}", &config); err != nil {
 					panic(err)
 				}
 			}
 
-			fpmApp.Logger.Debugf("Startup : %s, config: %v", "xx", config)
+			fpmApp.Logger.Debugf("Startup : %s, config: %v", "{{name}}", config)
 
-			fpmApp.AddBizModule("xx", &fpm.BizModule{
+			fpmApp.AddBizModule("{{name}}", &fpm.BizModule{
 				"foo": func(param *fpm.BizParam) (data interface{}, err error) {
 					req := make(map[string]interface{})
 					if err = param.Convert(&req); err != nil {
